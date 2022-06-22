@@ -13,18 +13,6 @@ external querySelector: string => option(Dom.element) =
 [@bs.module "react-dom"]
 external render: (React.element, Dom.element) => unit = "render";
 
-module Experimental = {
-  type root;
-
-  [@bs.module "react-dom"]
-  external createRoot: Dom.element => root = "createRoot";
-
-  [@bs.module "react-dom"]
-  external createBlockingRoot: Dom.element => root = "createBlockingRoot";
-
-  [@bs.send] external render: (root, React.element) => unit = "render";
-};
-
 [@bs.module "react-dom"]
 external hydrate: (React.element, Dom.element) => unit = "hydrate";
 

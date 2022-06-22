@@ -37,27 +37,6 @@ let renderToElementWithId = (reactElement, id) =>
   | Some(element) => render(reactElement, element)
   };
 
-module Experimental = {
-  type root = ReactDOM.Experimental.root;
-
-  [@bs.module "react-dom"]
-  external createRoot: Dom.element => root = "createRoot";
-
-  [@bs.send] external render: (root, React.element) => unit = "render";
-
-  let createRootWithClassName = className =>
-    switch (_getElementsByClassName(className)) {
-    | [||] => None
-    | elements => Some(createRoot(Array.unsafe_get(elements, 0)))
-    };
-
-  let createRootWithId = id =>
-    switch (_getElementById(id)) {
-    | None => None
-    | Some(element) => Some(createRoot(element))
-    };
-};
-
 [@bs.val] [@bs.module "react-dom"]
 external hydrate: (React.element, Dom.element) => unit = "hydrate";
 
